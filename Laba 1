@@ -1,0 +1,17 @@
+#include <stdio.h> 
+int main(void) 
+{ 
+float t, v, B; 
+
+printf("write time and Volume:"); 
+scanf_s("%f", &t); 
+
+scanf_s("%f", &B); 
+
+v = (B / t); 
+
+printf("speed is: %f\n", v); 
+
+system("pause"); 
+
+return 0; 
