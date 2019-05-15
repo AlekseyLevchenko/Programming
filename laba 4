@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define N 10
+
+int main(void)
+{
+int i = 0, posNum = 0, negNum = 0, array[N];
+srand(time(NULL));
+
+printf("initial array:\n");
+for(i = 0; i < N; i++)
+{
+array[i] = -100 + rand() % 200;
+printf("%4d ", array[i]);
+
+if(array[i] < 0)
+negNum++;
+else
+posNum++;
+}
+printf("\n\nfinal array:\n");
+
+if(posNum >= negNum)
+{
+for(i = 0; i < N; i++)
+{
+if(array[i] < 0)
+array[i] = 0;
+printf("%4d ", array[i]);
+}
+}
+else
+{
+for(i = 0; i < N; i++)
+{
+if(array[i] >= 0)
+array[i] = 0;
+printf("%4d ", array[i]);
+}
+}
+
+printf("\n");
+system("pause");
+return 0;
+}
