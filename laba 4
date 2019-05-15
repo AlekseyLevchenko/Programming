@@ -1,46 +1,123 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#define N 10
 
-int main(void)
-{
-int i = 0, posNum = 0, negNum = 0, array[N];
-srand(time(NULL));
+#include<string.h>
 
-printf("initial array:\n");
-for(i = 0; i < N; i++)
-{
-array[i] = -100 + rand() % 200;
-printf("%4d ", array[i]);
+#define MAXLINE 1000
 
-if(array[i] < 0)
-negNum++;
-else
-posNum++;
-}
-printf("\n\nfinal array:\n");
+int prv(char mass[], int begin, int end);
 
-if(posNum >= negNum)
+int glas(char s[], int begin, int end);
+
+main()
+
 {
-for(i = 0; i < N; i++)
+
+int wlen,N;
+
+char str[MAXLINE];
+
+int l,F=0,i,pos,k=0;
+
+printf("write a string:\n");
+
+gets(str);
+
+for (i=0,l=0; i < MAXLINE; ++i, l++)
+
 {
-if(array[i] < 0)
-array[i] = 0;
-printf("%4d ", array[i]);
-}
-}
-else
-{
-for(i = 0; i < N; i++)
-{
-if(array[i] >= 0)
-array[i] = 0;
-printf("%4d ", array[i]);
-}
+
+if (str[i]=='\0')
+
+break;
+
 }
 
-printf("\n");
-system("pause");
+for(i = 0; i <= l; i++)
+
+{
+
+if(str[i]==' '|| str[i]=='.' || str[i]==',' || str[i]=='\t')
+
+{
+
+if (F == 1)
+
+{
+
+wlen=i-pos;
+
+if(prv(str,pos,i)==0 && glas(str,pos,i)%2==0)
+
+{
+
+int j;
+
+for(j=pos; j<=l; j++)
+
+str[j]=str[j+wlen];
+
+i-=wlen;
+
+l-=wlen;
+
+}
+
+}
+
+F = 0;
+
+}
+
+else if (F==0)
+
+{
+
+F = 1;
+
+pos=i;
+
+}
+
+}
+
+puts(str);
+
 return 0;
+
+}
+
+int prv(char str[], int begin, int end)
+
+{
+
+int F,i;
+
+F=0;
+
+for (i=begin; i < end; i++)
+
+{
+
+if ((str[i]<'A' || str[i]>'Z') && (str[i]<'a' || str[i]>'z'))
+
+F=1;
+
+}
+
+return F;
+
+}
+
+int glas(char s[], int begin, int end)
+
+{
+
+int j,k=0;
+
+for(j=begin; j< end; j++)
+
+k=(s[j]=='a'||s[j]=='o'||s[j]=='u'||s[j]=='i'||s[j]=='y'||s[j]=='e'||s[j]=='A'||s[j]=='O'||s[j]=='U'||s[j]=='I'||s[j]=='Y'||s[j]=='E')? ++k : k;
+
+return k;
+
 }
