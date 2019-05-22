@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+#define MAX 10
+main()
+{
+	float s1,s2;
+	float m[MAX];
+	int i;
+	srand(time(NULL));
+
+	for(i=0;i<MAX;i++)
+		{
+		m[i]=(rand()%10);
+		printf("%f\t",m[i]);
+	}
+	printf("\n");
+	for(i=0;i<MAX/2;i++)
+	{
+		s1+=m[i];
+		s2+=m[MAX-i-1];
+	}
+	if(s1<s2)
+        for(i=0;i<MAX/2;m[i]=0,i++);
+    else
+        for (i=MAX/2; i<MAX;m[i]=0,i++);
+    for(i=0;i<MAX;i++)
+		printf("%f\t",m[i]);
+	return 0;
+}
