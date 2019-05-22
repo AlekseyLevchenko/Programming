@@ -1,0 +1,123 @@
+#include <stdio.h> 
+
+#include<string.h> 
+
+#define MAXLINE 1000 
+
+int prv(char mass[], int begin, int end); 
+
+int glas(char s[], int begin, int end); 
+
+main() 
+
+{ 
+
+int wlen,N; 
+
+char str[MAXLINE]; 
+
+int l,F=0,i,pos,k=0; 
+
+printf("write a string:\n"); 
+
+gets(str); 
+
+for (i=0,l=0; i < MAXLINE; ++i, l++) 
+
+{ 
+
+if (str[i]=='\0') 
+
+break; 
+
+} 
+
+for(i = 0; i <= l; i++) 
+
+{ 
+
+if(str[i]==' '|| str[i]=='.' || str[i]==',' || str[i]=='\t'|| i==l) 
+
+{ 
+
+if (F == 1) 
+
+{ 
+
+wlen=i-pos; 
+
+if(prv(str,pos,i)==0 && glas(str,pos,i)%2==0) 
+
+{ 
+
+int j; 
+printf("%d %d«\n",pos,i); 
+for(j=pos; j<=l; j++) 
+
+str[j]=str[j+wlen]; 
+
+i-=wlen; 
+
+l-=wlen; 
+
+} 
+
+} 
+
+F = 0; 
+
+} 
+
+else if (F==0) 
+
+{ 
+
+F = 1; 
+
+pos=i; 
+
+} 
+
+} 
+
+puts(str); 
+
+return 0; 
+
+} 
+
+int prv(char str[], int begin, int end) 
+
+{ 
+
+int F,i; 
+
+F=0; 
+
+for (i=begin; i < end; i++) 
+
+{ 
+
+if ((str[i]<'A' || str[i]>'Z') && (str[i]<'a' || str[i]>'z')) 
+
+F=1; 
+
+} 
+
+return F; 
+
+} 
+
+int glas(char s[], int begin, int end) 
+
+{ 
+
+int j,k=0; 
+
+for(j=begin; j< end; j++) 
+
+k=(s[j]=='a'||s[j]=='o'||s[j]=='u'||s[j]=='i'||s[j]=='y'||s[j]=='e'||s[j]=='A'||s[j]=='O'||s[j]=='U'||s[j]=='I'||s[j]=='Y'||s[j]=='E')? ++k : k; 
+k=(k==0)? 1 : k; 
+return k; 
+
+}
