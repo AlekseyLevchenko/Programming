@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#define N 3 
+#define K 4 
+void main()
+{
+	int x[N][K];
+	int i, j, imax, imin;
+	int max = -INT_MAX, min = INT_MAX;
+	for (i = 0; i < N; i++)
+	{
+		for (j = 0; j < K; j++)
+		{
+			scanf_s("%d", &x[i][j]); // Ввод числа 
+			if (max < x[i][j]) // Нахождение максимального 
+			{
+				max = x[i][j];
+				imax = i;
+			}
+			if (min > x[i][j]) // Нахождение минимального 
+			{
+				min = x[i][j];
+				imin = i;
+			}
+		}
+		printf("-----------\n");
+
+	}
+	printf("\n");
+	printf("___________________________\n");
+	printf("Vvedenii massiv:\n");
+
+	for (i = 0; i < N; i++)
+	{
+		for (j = 0; j < K; j++)
+		{
+			printf("%2d ", x[i][j]); // Без замены 
+		}
+		printf("\n");
+	}
+
+	printf("___________________________\n");
+	printf("\n");
+	if (imax == imin)
+	{
+		for (i = 0; i < N; i++)
+		{
+			for (j = 0; j < K; j++)
+			{
+				if (i != imax)
+				{
+					x[i][j] = 0;
+					printf("%2d ", x[i][j]); // обнуление
+				}
+				else
+				{
+					printf("%2d ", x[i][j]); // Без замены 
+				}
+			}
+			printf("\n");
+		}
+	}
+	else
+	{
+		printf("Net stroci v kotoroi odnovremenno i max i min element\n");
+		for (i = 0; i < N; i++)
+		{
+			for (j = 0; j < K; j++)
+			{
+				printf("%2d ", x[i][j]); // Без замены 
+			}
+			printf("\n");
+		}
+	}
+	_getch();
+}
