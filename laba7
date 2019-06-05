@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <conio.h>
+void bip(unsigned long int x);
+void main()
+{
+	unsigned long int x = 0;
+	int i, count = 0;
+	printf("Vvedite chislo x = ");
+	scanf_s("%lu", &x);
+	printf("Vvedeno:  ");
+	bip(x);
+	for (i = 0; i < 32; i++)
+	{
+		if (x & 1)
+			count++;
+		x = x >> 1;
+	}
+	printf("\nResultat: %d ", count);
+	_getch();
+}
+void bip(unsigned long int x)
+{
+	unsigned long int y = 0;
+	int line[32];
+	int i;
+	for (i = 31; i > -1; i--)
+	{
+		y = 1 & x >> (31 - i);
+		line[i] = y;
+	}
+	for (i = 0; i < 32; i++)
+	{
+		printf("%d", line[i]);
+	}
+}
